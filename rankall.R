@@ -25,12 +25,12 @@ rankall<-function(outcome,num="best"){
   h<-character(0)
   for(i in le){
     new_data<-data_list[[i]]
-    new_data[[outcome]]<as.numeric(new_data[[outcome]])
-    index<-order(new_data[[outcome]],new_data[["Hospital.Name"]])
-    index1<-is.na((new_data[[outcome]]))
+    vector_value<-as.numeric(new_data[[outcome]])
+    index<-order(vector_value,new_data[["Hospital.Name"]])
+    index1<-(!is.na(vector_value))
     index1<-index1[index]
     name<-new_data[["Hospital.Name"]][index]
-    #name<-name[!index1]
+    name<-name[index1]
     if(num=="best"&& length(name)>0){
       h<-append(h,name[1])
     }
